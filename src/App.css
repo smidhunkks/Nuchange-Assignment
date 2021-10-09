@@ -91,5 +91,17 @@ font-size: 1.2rem;
   width: 20px;
   outline: none;
   border: 1;
+
+}
+.filter-menu{
+  margin:0 2rem ;
+}
+.filter-menu select::before{
+  content: "Filter";
+  height: 2rem;
   
+}
+.filter-menu select{
+  border: 0;
+
 }

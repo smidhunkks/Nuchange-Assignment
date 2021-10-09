@@ -22,7 +22,7 @@ function App() {
 
       vendor: "Himachal Pvt Ltd",
 
-      category: "Vegtables",
+      category: "Vegetables",
     },
 
     {
@@ -71,19 +71,20 @@ function App() {
   const [cart, setcart] = useState([]);
   const [modal_state, setmodal_state] = useState(false);
   const [Total, setTotal] = useState(0);
+  const [Filter, setFilter] = useState("0");
 
   const onchange = (props) => {
     setcart(props);
   };
 
   const onOpenModal = (props) => {
+    CostTotal();
     setmodal_state(true);
   };
 
   const onCloseModal = (props) => {
     setmodal_state(false);
   };
-
 
   const Addtocart = (props) => {
     if (!cart.includes(props)) {
@@ -96,14 +97,14 @@ function App() {
     }
   };
 
-
-  useEffect(() => {
+  const CostTotal = () => {
+    let temp = 0;
     cart.forEach((obj) => {
-      Total += obj.quantity * obj.price;
-      setTotal(Total);
-      console.log(Total);
+      temp += obj.quantity * obj.price;
     });
-  }, [Total]);
+    setTotal(temp);
+    console.log(Total);
+  };
 
   return (
     <div className="App">
@@ -124,7 +125,7 @@ function App() {
                         name="quant"
                         id="quant"
                         value={obj.quantity}
-                        maxLength="3"
+                        maxLength={3}
                         onChange={(e) => {
                           if (e.target.value) {
                             obj.quantity = e.target.value;
@@ -162,17 +163,29 @@ function App() {
           </div>
         </div>
       </Modal>
-      <select>
-        <option value="None">None</option>
-        <option value="Vegetables">Vegetables</option>
-        <option value="">Fruits</option>
-      </select>
+      <div className="filter-menu">
+        <select
+          onChange={(e) => {
+            setFilter(e.target.value);
+            console.log(e.target.value);
+          }}
+        >
+          <option value="0">None</option>
+          <option value="Vegetables">Vegetables</option>
+          <option value="Fruits">Fruits</option>
+        </select>
+      </div>
       <div className="item-list-wrap">
         <div className="item-list">
-          
-          {itemlist.map((obj, index) => (
-            <Cards key={index} onclick={Addtocart} data={obj} />
-          ))}
+          {Filter !== "0"
+            ? itemlist
+                .filter((item) => item.category === Filter)
+                .map((obj, index) => (
+                  <Cards key={index} onclick={Addtocart} data={obj} />
+                ))
+            : itemlist.map((obj, index) => (
+                <Cards key={index} onclick={Addtocart} data={obj} />
+              ))}
         </div>
       </div>
     </div>
