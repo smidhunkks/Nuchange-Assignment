@@ -1,15 +1,15 @@
 import React from 'react'
 import './Navbar.css'
-import cart from '../../images/cart.svg'
-import profile from '../../images/profile.svg'
 
-function Navbar() {
+
+
+function Navbar(props) {
     return (
         <div className="nav">
             <span className="brand">E-Mart</span>
             <div className="nav-item">
-                <img src={cart} alt="cart icon" className="cart"/>
-                <img src={profile} alt="profile" className="profile"/>
+                <img src={process.env.PUBLIC_URL + '/images/cart.svg'} alt="cart icon" className="cart"/>
+                <img src={process.env.PUBLIC_URL + '/images/profile.svg'} alt="profile" className="profile"/>
             </div>
         </div>
     )

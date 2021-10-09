@@ -68,13 +68,10 @@ function App() {
       </header>
       <div className="item-list-wrap">
         <div className="item-list">
+          {itemlist.map((obj,index)=>
+            <Cards key={index} data={obj} />
+          )}
           
-          <Cards />
-          <Cards />
-          <Cards />
-          <Cards />
-          <Cards />
-          <Cards />
         </div>
       </div>
     </div>
