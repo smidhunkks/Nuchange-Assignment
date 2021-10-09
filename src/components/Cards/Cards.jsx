@@ -4,7 +4,7 @@ import "./Cards.css";
 
 
 function Cards(props) {
-  console.log(process.env.PUBLIC_URL + `/images/${props.data.name}.png`)
+  
   return (
     <div className="card-wrap">
       <div className="card-outer">
@@ -26,7 +26,7 @@ function Cards(props) {
               <br />
               <p className="cost">₹{props.data.price}</p>
             </div>
-            {props.data.available?<button className="cart-button">Add to cart</button>:<button className="cart-button button-inactive">Add to cart</button>}
+            {props.data.available?<button className="cart-button" onClick={()=>{props.onclick(props.data)}}>Add to cart</button>:<button className="cart-button button-inactive">Add to cart</button>}
             
           </div>
         </div>

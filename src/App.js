@@ -1,6 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 import Cards from "./components/Cards/Cards";
 import Navbar from "./components/Navbar/Navbar";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 function App() {
   const itemlist = [
@@ -61,6 +66,18 @@ function App() {
     },
   ];
 
+  const [cart, setcart] = useState([]);
+  const Addtocart = (props) => {
+    if (!cart.includes(props)) {
+      cart.push(props);
+      setcart(cart);
+      toast.info(`added ${props.name} to cart`);
+      console.log(cart);
+    } else {
+      toast(`Item already in cart`);
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -68,10 +85,9 @@ function App() {
       </header>
       <div className="item-list-wrap">
         <div className="item-list">
-          {itemlist.map((obj,index)=>
-            <Cards key={index} data={obj} />
-          )}
-          
+          {itemlist.map((obj, index) => (
+            <Cards key={index} onclick={Addtocart} data={obj} />
+          ))}
         </div>
       </div>
     </div>
