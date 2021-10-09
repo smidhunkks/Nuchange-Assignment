@@ -5,11 +5,18 @@
     justify-content: space-between;
     height: 4rem;
     padding:0 2rem;
+    box-shadow: 0 0 10px rgb(194, 193, 193);
     
 }
+.brand-wrap{
+   
+   
+}
 .brand{
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
+    color: rgb(31, 185, 31);
+    
 }
 .nav-item{
     display: flex;

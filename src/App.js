@@ -73,9 +73,7 @@ function App() {
   const [Total, setTotal] = useState(0);
   const [Filter, setFilter] = useState("0");
 
-  const onchange = (props) => {
-    setcart(props);
-  };
+ 
 
   const onOpenModal = (props) => {
     CostTotal();
@@ -90,7 +88,7 @@ function App() {
     if (!cart.includes(props)) {
       cart.push({ ...props, quantity: 1 });
       setcart(cart);
-      toast.info(`added ${props.name} to cart`);
+      toast.info(`added ${props.name} to cart`, {position: toast.POSITION.BOTTOM_RIGHT, autoClose:1500});
       console.log(cart);
     } else {
       toast(`Item already in cart`);
@@ -130,15 +128,17 @@ function App() {
                           if (e.target.value) {
                             obj.quantity = e.target.value;
                             cart[index].quantity = e.target.value;
-                            onchange(cart);
+                            setcart(cart)
+                            
                           }
                         }}
                         onBlur={() => {
                           if (cart[index].quantity) {
-                            onchange(cart);
+                            setcart(cart)
+                            
                           } else {
                             cart[index].quantity = 1;
-                            onchange(cart);
+                            setcart(cart)
                           }
 
                           console.log(cart);
@@ -147,7 +147,7 @@ function App() {
                       Kg
                     </div>
                     <div className="modal-price">₹{obj.price}</div>
-                    <div className="modal-item-close">X</div>
+                    <div className="modal-item-close" onClick={()=>{}}>X</div>
                   </div>
                 );
               })
@@ -165,12 +165,13 @@ function App() {
       </Modal>
       <div className="filter-menu">
         <select
+          id="drop-down"
           onChange={(e) => {
             setFilter(e.target.value);
             console.log(e.target.value);
           }}
         >
-          <option value="0">None</option>
+          <option value="0">All</option>
           <option value="Vegetables">Vegetables</option>
           <option value="Fruits">Fruits</option>
         </select>
