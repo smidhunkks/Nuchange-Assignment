@@ -9,7 +9,7 @@ function Navbar() {
             <span className="brand">E-Mart</span>
             <div className="nav-item">
                 <img src={cart} alt="cart icon" className="cart"/>
-                <img src={profile} alt="profile icon" className="profile"/>
+                <img src={profile} alt="profile" className="profile"/>
             </div>
         </div>
     )

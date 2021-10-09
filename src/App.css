@@ -1,7 +1,28 @@
-.item-list{
+.item-lis-wrap {
+  display: flex;
+}
+.item-list {
   padding-top: 2.5rem;
   display: grid;
   column-gap: 10px;
   row-gap: 2rem;
-  grid-template-columns: auto auto auto auto;
+  /* grid-template-columns: auto; */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  
+ 
 }
+@media (min-width: 640px) {
+  .item-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .item-list { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1280px) {
+  .item-list { grid-template-columns: repeat(4, 1fr); }
+}
+
+
+
